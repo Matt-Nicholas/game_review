@@ -1,0 +1,16 @@
+<h1>$game.getTitle()</h1>
+<ul>
+  #foreach($review in $game.getReviews())
+   <li><a href="/games/$game.getId()/reviews/$review.getId()">$review.getComment()</a></li>
+  #end
+</ul>
+<hr>
+<form action="/reviews/new" method="post">
+  <input id="gameId" name="gameId" type="hidden" value="$game.getId()">
+  <label for="comment">Comment:</label>
+  <input id="comment" name="comment" type="text">
+  <button type="submit" class="btn btn-default">Add review</button>
+</form>
+
+
+<a href="/">Home</a>

@@ -1,0 +1,31 @@
+#if($games)
+  <ul>
+    #foreach ($game in $games)
+      <li><a href="/games/$game.getId()">$game.getTitle()</a></li>
+    #end
+  </ul>
+#else
+  <p>There are no games yet! :(</p>
+#end
+
+<h2>Add a game: </h2>
+<form action="/games/new" method="post">
+  <label for="title">Title: </label>
+  <input id="title" name="title" type="text">
+  <button type="submit" class="btn btn-success">Add</button>
+</form>
+
+<h2>Review an game: </h2>
+<form action="/reviews/new" method="post">
+  <label for="gameId">Select a title: </label>
+    <select id='gameId' name='gameId' type='text'>
+      #foreach($game in $games)
+        <option value="$game.getId()">$game.getTitle()</option>
+      #end
+    </select>
+  <div class="form-group">
+    <label for="comment">Comment: </label>
+    <input id="comment" name="comment" type="text" class="form-control">
+  </div>
+  <button type="submit" class="btn btn-success">Add</button>
+</form>

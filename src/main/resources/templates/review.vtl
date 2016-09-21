@@ -1,0 +1,15 @@
+
+<h2>$game.getTitle()</h2>
+<h3>$review.getComment()</h3>
+
+<form action="/games/$review.getGameId()/reviews/$review.getId()" method="post">
+  <label for="comment">Comment</label>
+  <input id="comment" name="comment" type="text" value="$review.getComment()">
+  <button type="submit" class="btn btn-info">Update comment</button>
+</form>
+
+<form action="/games/$review.getGameId()/reviews/$review.getId()/delete" method="post">
+  <button type="submit" class="btn btn-danger" id="delete-review">Delete</button>
+</form>
+
+<a href="/games/$game.getId()">Return to $game.getTitle()</a>
