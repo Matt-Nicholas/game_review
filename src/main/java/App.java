@@ -3,6 +3,14 @@ import java.util.Map;
 import spark.ModelAndView;
 import spark.template.velocity.VelocityTemplateEngine;
 import static spark.Spark.*;
+import javax.servlet.*;
+import javax.servlet.http.*;
+import java.io.*;
+import java.util.List;
+import java.util.ArrayList;
+import java.util.Arrays;
+
+
 
 public class App {
   public static void main(String[] args) {
@@ -64,7 +72,54 @@ public class App {
       String title = request.queryParams("title");
       Game game = new Game(title);
       game.save();
+      for (int i = 1;i < 4 ;i++ ) {
+        String temp = request.queryParams("console" + i);
+        GameSystem newSystem = new GameSystem(temp);
+        if(!(temp == null)) {
+          game.createSystemLink(newSystem.findSystem());
+        }
+      }
+      for (int i = 1;i < 4 ;i++ ) {
+        String temp = request.queryParams("genre" + i);
+        Genre newGenre = new Genre(temp);
+
+        if(!(temp == null)) {
+          game.createGenreLink(newGenre.findGenre());
+        }
+      }
+
+
+
+      // if(!(request.queryParams("xbox") == null)){
+      //   if ((GameSystem.findMatch("Xbox One"))) {
+      //     GameSystem newBox = new GameSystem("Xbox One");
+      //     newBox.save();
+      //   }
+      // }
+      // if(!(request.queryParams("ps4") == null)){
+      //   if ((GameSystem.findMatch("PS4"))) {
+      //     GameSystem newBox = new GameSystem("PS4");
+      //     newBox.save();
+      //   }
+      // }
+      // if(!(request.queryParams("pc") == null)){
+      //   if ((GameSystem.findMatch("PC"))) {
+      //     GameSystem newBox = new GameSystem("PC");
+      //     newBox.save();
+      //   }
+      // }
+
+      // for (int i = 1;i < 4 ;i++ ) {
+      //   String temp = request.queryParams("genre"+i);
+      //   try {
+      //
+      //     System.out.println(temp);
+      //   } catch (Exception ex) {
+      //     System.out.println("catch hit");
+      //   }
+      // }
       model.put("game", game);
+      // model.put("gameS", game);
       String url = String.format("/games/%d", game.getId());
       response.redirect(url);
       return new ModelAndView(model, layout);
@@ -79,4 +134,6 @@ public class App {
     }, new VelocityTemplateEngine());
 
   }
+
+
 }

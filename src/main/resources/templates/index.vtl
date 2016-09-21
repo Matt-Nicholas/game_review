@@ -11,11 +11,29 @@
 <h2>Add a game: </h2>
 <form action="/games/new" method="post">
   <label for="title">Title: </label>
-  <input id="title" name="title" type="text">
-  <button type="submit" class="btn btn-success">Add</button>
+  <!-- text box for new game title -->
+  <input id="title" name="title" type="text"> <br>
+  <!-- dropdown menu for all systems -->
+  <label>System(s)</label>
+  <input  type="checkbox" id="xbox" value="Xbox One" name="console1">Xbox One</input>
+  <input type="checkbox"  id="ps4" value="PS4" name="console2">PS4</input>
+  <input  type="checkbox" id="pc" value="PC" name="console3">PC</input>
+  <br>
+  <!-- dropdown menu for all genres -->
+  <label>Genre(s)</label>
+  <input type="checkbox" id="fps" value="FPS" name="genre1">FPS</input>
+  <input type="checkbox" id="platformer" value="Platformer" name="genre2">Platformer</input>
+  <input type="checkbox" id="strategy" value="Strategy" name="genre3">Strategy</input>
+  <!-- submit game -->
+  <br>
+  <label>Summary:</label>
+  <br>
+  <input class="text-field" id="summary" name="summary" type="text"> <br>
+
+  <br><button type="submit" class="btn-success">Add</button>
 </form>
 
-<h2>Review an game: </h2>
+<h2>Review a game: </h2>
 <form action="/reviews/new" method="post">
   <label for="gameId">Select a title: </label>
     <select id='gameId' name='gameId' type='text'>
@@ -23,9 +41,9 @@
         <option value="$game.getId()">$game.getTitle()</option>
       #end
     </select>
-  <div class="form-group">
-    <label for="comment">Comment: </label>
-    <input id="comment" name="comment" type="text" class="form-control">
-  </div>
-  <button type="submit" class="btn btn-success">Add</button>
+
+    <br><label for="comment">Comment: </label><br>
+    <input class="text-field" id="comment" name="comment" type="text">
+
+  <br><br><button type="submit" class="btn-success">Add</button>
 </form>

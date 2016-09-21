@@ -4,3 +4,20 @@ footer {
     bottom: 0;
     position: fixed;
 }
+
+.text-field{
+  height: 100px;
+  width: 50%;
+
+}
+body{
+  background-color: black;
+  color: #E4E4E4;
+}
+input{
+  border: inset 5px #E4E4E4;
+  color: black;
+}
+h1{
+  text-align: center;
+}

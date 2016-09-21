@@ -6,17 +6,19 @@ import java.util.Arrays;
 
 public class Review {
   private int id;
-  private int gameId;
+  private int game_id;
   private String comment;
   private int rating;
-  private LocalDateTime created_at;
+  private String created_at = "04/20/1969";
 
 
   public Review(String comment, int gameId) {
-    this.gameId = gameId;
+    this.game_id = gameId;
     this.comment = comment;
-    this.rating = 5;
-    created_at = LocalDateTime.now();
+    // this.rating = 5;
+    // LocalDate date = LocalDate.now();
+    // created_at = date.format(formatter);
+
   }
 
   public int getId() {
@@ -24,7 +26,7 @@ public class Review {
   }
 
   public int getGameId() {
-    return gameId;
+    return game_id;
   }
 
   public String getComment() {
@@ -35,13 +37,13 @@ public class Review {
     return rating;
   }
 
-  public LocalDateTime getCreatedAt() {
+  public String getCreatedAt() {
     return created_at;
   }
 
   public static Review find(int id) {
     try(Connection con = DB.sql2o.open()) {
-      String sql = "SELECT * FROM reviews WHERE id=:id";
+      String sql = "SELECT * FROM review_table WHERE id=:id";
       Review review = con.createQuery(sql)
         .addParameter("id", id)
         .executeAndFetchFirst(Review.class);
@@ -50,7 +52,7 @@ public class Review {
   }
 
   public static List<Review> all() {
-    String sql = "SELECT id, gameId, comment, rating, created_at FROM reviews";
+    String sql = "SELECT id, gameId, comment, rating, created_at FROM review_table";
     try(Connection con = DB.sql2o.open()) {
       return con.createQuery(sql).executeAndFetch(Review.class);
     }
@@ -68,9 +70,9 @@ public class Review {
 
   public void save() {
     try(Connection con = DB.sql2o.open()) {
-      String sql = "INSERT INTO reviews (gameId, comment, rating, created_at) VALUES (:gameId, :comment, :rating, :created_at)";
+      String sql = "INSERT INTO review_table (game_id, comment, rating, created_at) VALUES (:game_id, :comment, :rating, :created_at)";
       this.id = (int) con.createQuery(sql, true)
-      .addParameter("gameId", this.gameId)
+      .addParameter("game_id", this.game_id)
       .addParameter("comment", this.comment)
       .addParameter("rating", this.rating)
       .addParameter("created_at", this.created_at)
@@ -81,7 +83,7 @@ public class Review {
 
   public void update(String comment) {
     try(Connection con = DB.sql2o.open()) {
-      String sql = "UPDATE reviews SET comment = :comment WHERE id = :id";
+      String sql = "UPDATE review_table SET comment = :comment WHERE id = :id";
       con.createQuery(sql)
         .addParameter("comment", comment)
         .addParameter("id", id)
@@ -90,7 +92,7 @@ public class Review {
     }
   public void delete() {
     try(Connection con = DB.sql2o.open()) {
-    String sql = "DELETE FROM reviews WHERE id = :id;";
+    String sql = "DELETE FROM review_table WHERE id = :id;";
     con.createQuery(sql)
       .addParameter("id", id)
       .executeUpdate();
