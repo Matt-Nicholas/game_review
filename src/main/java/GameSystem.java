@@ -57,26 +57,26 @@ public class GameSystem{
     }
   }
 
-  public Integer findSystem() {
-      if(this.findMatch(this.name)) {
-        this.save();
-        return this.id;
-      } else {
-        try(Connection con = DB.sql2o.open()) {
-          String sql = "SELECT id FROM system_table name=:name";
-          return con.createQuery(sql)
-              .addParameter("name", this.name)
-              .executeAndFetch(Integer.class);
-      }
-      }
-    }
+  // public Integer findSystem() {
+  //     if(this.findMatch(this.name)) {
+  //       this.save();
+  //       return this.id;
+  //     } else {
+  //       try(Connection con = DB.sql2o.open()) {
+  //         String sql = "SELECT id FROM system_table name=:name";
+  //         return con.createQuery(sql)
+  //             .addParameter("name", this.name)
+  //             .executeAndFetch(Integer.class);
+  //     }
+  //     }
+  //   }
 
-  public List<Integer> findGames(int id) {
-    try(Connection con = DB.sql2o.open()) {
-      String sql = "SELECT system_id FROM system_game_link game_id=:id";
-      return con.createQuery(sql)
-          .addParameter("id", id)
-          .executeAndFetch();
-    }
-  }
+  // public List<Integer> findGames(int id) {
+  //   try(Connection con = DB.sql2o.open()) {
+  //     String sql = "SELECT system_id FROM system_game_link game_id=:id";
+  //     return con.createQuery(sql)
+  //         .addParameter("id", id)
+  //         .executeAndFetch();
+  //   }
+  // }
 }

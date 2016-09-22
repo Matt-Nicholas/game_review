@@ -1,23 +1,63 @@
-footer {
-    background-color: black;
-    width: 100%;
-    bottom: 0;
-    position: fixed;
-}
 
 .text-field{
-  height: 100px;
-  width: 50%;
-
+    height: 100px;
+    width: 800px;
 }
 body{
-  background-color: black;
-  color: #E4E4E4;
+    background-color: black;
+    color: #E4E4E4;
 }
 input{
-  border: inset 5px #E4E4E4;
-  color: black;
+    border: inset 5px #E4E4E4;
+    color: black;
 }
 h1{
-  text-align: center;
+    text-align: center;
+    margin-bottom: 0;
+    top: 0;
+    padding-bottom: 0;
+    width: 100%;
+}
+#logo-image{
+    height: 100px;
+    width: 100px;
+    bottom: 0;
+}
+
+button{
+    border: 5px outset red;
+    color: black;
+    background-color: red;
+}
+#header-container{
+    width: 100%;
+    top: 0;
+    padding-bottom: 100px;
+    padding-top: 0;
+    border-bottom: 5px outset red;
+    padding-left: 100px;
+    padding-righ: 100px;
+}
+
+#template-container{
+    margin-top: 5px;
+    margin-bottom: 5px;
+    padding-top: 100px;
+    padding-bottom: 100px;
+    border-top: 5px outset red;
+    border-bottom: 5px outset red;
+    width: 100%;
+    padding-left: 100px;
+    padding-righ: 100px;
+}
+
+#footer-container{
+    width: 100%;
+    bottom: 0;
+    background-color: black;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    border-top: 5px outset red;
+    padding-left: 100px;
+    padding-righ: 100px;
 }

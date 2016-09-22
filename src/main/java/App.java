@@ -72,21 +72,21 @@ public class App {
       String title = request.queryParams("title");
       Game game = new Game(title);
       game.save();
-      for (int i = 1;i < 4 ;i++ ) {
-        String temp = request.queryParams("console" + i);
-        GameSystem newSystem = new GameSystem(temp);
-        if(!(temp == null)) {
-          game.createSystemLink(newSystem.findSystem());
-        }
-      }
-      for (int i = 1;i < 4 ;i++ ) {
-        String temp = request.queryParams("genre" + i);
-        Genre newGenre = new Genre(temp);
-
-        if(!(temp == null)) {
-          game.createGenreLink(newGenre.findGenre());
-        }
-      }
+    //   for (int i = 1;i < 4 ;i++ ) {
+    //     String temp = request.queryParams("console" + i);
+    //     GameSystem newSystem = new GameSystem(temp);
+    //     if(!(temp == null)) {
+    //       game.createSystemLink(newSystem.findSystem());
+    //     }
+    //   }
+    //   for (int i = 1;i < 4 ;i++ ) {
+    //     String temp = request.queryParams("genre" + i);
+    //     Genre newGenre = new Genre(temp);
+      //
+    //     if(!(temp == null)) {
+    //       game.createGenreLink(newGenre.findGenre());
+    //     }
+    //   }
 
 
 

@@ -1,17 +1,26 @@
 <!DOCTYPE html>
 <html>
-  <head>
+<head>
     <title>Kick-Ass Reviews</title>
     <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css'>
     <link rel='stylesheet' href='/css/app.css'>
-  </head>
-  <body>
-    <h1>Kick-Ass Reviews</h1>
-    <div class="container">
-      #parse($template )
+</head>
+<body>
+    <div class="container" id="header-container">
+        <div id="logo">
+            <a href="/"><img src="/images/angry_ass.jpg"  id="logo-image"></a>
+        </div>
+
+        <h1>Kick-Ass Reviews</h1>
     </div>
-  </body>
-  <footer>
+    <div class="container" id="template-container">
+        #parse($template )
+    </div>
+</body>
+<footer>
+    <div class="container" id="footer-container">
         <p>Designed by: Ben Vissotkzy and Matthew F Nicholas | Contact information: <a href="mailto:fostermatt82@gmail.com">fostermatt82@gmail.com</a></p>
-    </footer>
+    </div>
+
+</footer>
 </html>

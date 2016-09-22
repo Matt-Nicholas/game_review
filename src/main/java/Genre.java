@@ -57,19 +57,19 @@ public class Genre{
     }
   }
 
-  public Integer findGenre() {
-      if(this.findMatch(this.name)) {
-        this.save();
-        return this.id;
-      } else {
-        try(Connection con = DB.sql2o.open()) {
-          String sql = "SELECT id FROM genre_table name=:name";
-          return con.createQuery(sql)
-              .addParameter("name", this.name)
-              .executeAndFetch(Integer.class);
-      }
-     }
-   }
+  // public Integer findGenre() {
+  //     if(this.findMatch(this.name)) {
+  //       this.save();
+  //       return this.id;
+  //     } else {
+  //       try(Connection con = DB.sql2o.open()) {
+  //         String sql = "SELECT id FROM genre_table name=:name";
+  //         return con.createQuery(sql)
+  //             .addParameter("name", this.name)
+  //             .executeAndFetch(Integer.class);
+  //     }
+  //    }
+  //  }
 
   public List<Integer> findGames(int id) {
     try(Connection con = DB.sql2o.open()) {
