@@ -6,13 +6,11 @@ public class Game {
   private String title;
   private int id;
   private String summary;
-  private int genre_id;
-  private int system_id;
   // private int cost;
 
-  public Game(String title) {
+  public Game(String title, String summary) {
     this.title = title;
-
+    this.summary = summary;
   }
 
   public String getTitle() {
@@ -26,6 +24,9 @@ public class Game {
   // }
   public int getId() {
     return id;
+  }
+  public String getSummary() {
+    return summary;
   }
 
   public static List<Game> all() {
@@ -69,9 +70,10 @@ public class Game {
 
   public void save() {
     try(Connection con = DB.sql2o.open()) {
-      String sql = "INSERT INTO game_table(title) VALUES (:title)";
+      String sql = "INSERT INTO game_table(title, summary) VALUES (:title, :summary)";
       this.id = (int) con.createQuery(sql, true)
       .addParameter("title", this.title)
+      .addParameter("summary", this.summary)
       .executeUpdate()
       .getKey();
     }
@@ -99,17 +101,25 @@ public class Game {
 
   public List<Integer> getGameSystems() {
     try (Connection con = DB.sql2o.open()) {
-      String sql = "SELECT * FROM system_game_link WHERE game_id=:id";
+      String sql = "SELECT system_id FROM system_game_link WHERE game_id=:id";
     return con.createQuery(sql)
       .addParameter("id",this.id)
       .executeAndFetch(Integer.class);
     }
   }
-  // public List<Game> findGames(List<Integer> _list) {
-  //   List<Game> games = new List<Game>();
-  //   for(int gameId : _list){
-  //     games.add(Game.find(gameId));
-  //   }
-  //   return games;
-  // }
+  public List<Integer> getGenres() {
+    try (Connection con = DB.sql2o.open()) {
+      String sql = "SELECT genre_id FROM genre_game_link WHERE game_id=:id";
+    return con.createQuery(sql)
+      .addParameter("id",this.id)
+      .executeAndFetch(Integer.class);
+    }
+  }
+  public List<Game> findGames(List<Integer> _list) {
+    List<Game> games = new ArrayList<Game>();
+    for(int gameId : _list){
+      games.add(Game.find(gameId));
+    }
+    return games;
+  }
 }

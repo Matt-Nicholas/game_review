@@ -1,7 +1,16 @@
-
+h2{
+    text-align: center;
+    font-weight: bold;
+}
+#summary{
+    font-style: italic;
+}
 .text-field{
     height: 100px;
     width: 800px;
+    color: black;
+    border: inset 5px #E4E4E4;
+
 }
 body{
     background-color: black;
@@ -36,7 +45,7 @@ button{
     padding-top: 0;
     border-bottom: 5px outset red;
     padding-left: 100px;
-    padding-righ: 100px;
+    padding-right: 100px;
 }
 
 #template-container{
@@ -48,7 +57,7 @@ button{
     border-bottom: 5px outset red;
     width: 100%;
     padding-left: 100px;
-    padding-righ: 100px;
+    padding-right: 100px;
 }
 
 #footer-container{
@@ -59,5 +68,5 @@ button{
     padding-bottom: 5px;
     border-top: 5px outset red;
     padding-left: 100px;
-    padding-righ: 100px;
+    padding-right: 100px;
 }

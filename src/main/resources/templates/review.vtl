@@ -2,12 +2,17 @@
 <h2>$game.getTitle()</h2>
 <h3>$review.getComment()</h3>
 
-<form action="/games/$review.getGameId()/reviews/$review.getId()" method="post">
-  <label for="comment">Comment</label>
-  <input id="comment" name="comment" type="text" value="$review.getComment()">
-  <button type="submit" class="btn btn-info">Update comment</button>
-</form>
 
+
+<h2>Review</h2>
+<form action="/games/$review.getGameId()/reviews/$review.getId()" method="post">
+  <label for="title">Title: </label>
+  <input type="text" name="title" value=""> <label for="rating">*****</label><br>
+  <label for="comment">Comment: </label><br>
+
+  <textarea class="text-field" id="comment" name="comment" type="text"></textarea><br>
+  <br><br><button type="submit">Update Review</button>
+</form>
 <form action="/games/$review.getGameId()/reviews/$review.getId()/delete" method="post">
   <button type="submit" class="btn btn-danger" id="delete-review">Delete</button>
 </form>

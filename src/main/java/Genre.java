@@ -1,5 +1,6 @@
 import java.util.List;
 import org.sql2o.*;
+import java.util.ArrayList;
 
 public class Genre{
 
@@ -14,9 +15,9 @@ public class Genre{
     return id;
   }
 
-  public String getName(){
-    return name;
-  }
+  // public String getName(){
+  //   return name;
+  // }
 
 
   public static List<Genre> all() {
@@ -25,7 +26,7 @@ public class Genre{
       return con.createQuery(sql).executeAndFetch(Genre.class);
     }
   }
-  public static Genre find(int id) {
+  public static Genre findG(int id) {
       try(Connection con = DB.sql2o.open()) {
         String sql = "SELECT * FROM genre_table WHERE id=:id";
         Genre name = con.createQuery(sql)
@@ -57,26 +58,37 @@ public class Genre{
     }
   }
 
-  // public Integer findGenre() {
-  //     if(this.findMatch(this.name)) {
-  //       this.save();
-  //       return this.id;
-  //     } else {
-  //       try(Connection con = DB.sql2o.open()) {
-  //         String sql = "SELECT id FROM genre_table name=:name";
-  //         return con.createQuery(sql)
-  //             .addParameter("name", this.name)
-  //             .executeAndFetch(Integer.class);
-  //     }
-  //    }
-  //  }
+  public Integer findGenre() {
+      if(this.findMatch(this.name)) {
+        this.save();
+        return this.id;
+      } else {
+        return this.findGenreGivenName();
+     }
+   }
 
-  public List<Integer> findGames(int id) {
+  public List<Integer> findGameId() {
     try(Connection con = DB.sql2o.open()) {
-      String sql = "SELECT * FROM genre_game_link game_id=:id";
+      String sql = "SELECT game_id FROM genre_game_link where genre_id=:id";
     return con.createQuery(sql)
         .addParameter("id", id)
         .executeAndFetch(Integer.class);
+    }
+  }
+  public Integer findGenreGivenName() {
+    try(Connection con = DB.sql2o.open()) {
+      String sql = "SELECT id FROM genre_table where name=:name";
+      return con.createQuery(sql)
+          .addParameter("name", this.name)
+          .executeAndFetchFirst(Integer.class);
+  }
+  }
+  public String getName(){
+    try(Connection con = DB.sql2o.open()){
+      String sql = "SELECT name FROM genre_table WHERE id=:id";
+      return con.createQuery(sql)
+        .addParameter("id", this.id)
+        .executeAndFetchFirst(String.class);
     }
   }
 }

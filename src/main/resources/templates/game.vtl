@@ -1,16 +1,39 @@
 <h2>$game.getTitle()</h2>
+
+
+<p>||
+  #foreach($system in $game.getGameSystems())
+  $GameSystem.find($system).getName() ||
+  #end
+</p>
+
+
+<p>||
+  #foreach($currentGenre in $game.getGenres())
+   $Genre.findG($currentGenre).getName() ||
+  #end
+</p>
+#if($game.getSummary())
+<p id="summary">
+  $game.getSummary()
+</p>
+#end
+<hr>
+
+<h2>Review</h2>
+<form action="$game.getId()/reviews/new" method="post">
+  <label for="title">Title: </label>
+  <input type="text" name="title" value=""> <label for="rating">*****</label><br>
+  <label for="comment">Comment: </label><br>
+  <textarea class="text-field" id="comment" name="comment" type="text"></textarea><br>
+  <br><br><button type="submit">Add</button>
+  </form>
+<h4>Reviews</h4>
 <ul>
   #foreach($review in $game.getReviews())
-   <li><a href="/games/$game.getId()/reviews/$review.getId()">$review.getComment()</a></li>
+   <li><a href="/games/$game.getId()/reviews/$review.getId()">$review.getTitle()</a></li>
   #end
 </ul>
-<hr>
-<form action="/reviews/new" method="post">
-  <input id="gameId" name="gameId" type="hidden" value="$game.getId()">
-  <label for="comment">Comment:</label>
-  <input id="comment" name="comment" type="text">
-  <button type="submit" class="btn btn-default">Add review</button>
-</form>
 
 
 <a href="/">Home</a>

@@ -14,9 +14,9 @@ public class GameSystem{
     return id;
   }
 
-  public String getName(){
-    return name;
-  }
+  // public String getName(){
+  //   return name;
+  // }
 
 
   public static List<GameSystem> all() {
@@ -57,26 +57,39 @@ public class GameSystem{
     }
   }
 
-  // public Integer findSystem() {
-  //     if(this.findMatch(this.name)) {
-  //       this.save();
-  //       return this.id;
-  //     } else {
-  //       try(Connection con = DB.sql2o.open()) {
-  //         String sql = "SELECT id FROM system_table name=:name";
-  //         return con.createQuery(sql)
-  //             .addParameter("name", this.name)
-  //             .executeAndFetch(Integer.class);
-  //     }
-  //     }
-  //   }
+  public Integer findSystem() {
+      if(this.findMatch(this.name)) {
+        this.save();
+        return this.id;
+      } else {
+        return this.findSystemGivenName();
+      }
+    }
 
-  // public List<Integer> findGames(int id) {
-  //   try(Connection con = DB.sql2o.open()) {
-  //     String sql = "SELECT system_id FROM system_game_link game_id=:id";
-  //     return con.createQuery(sql)
-  //         .addParameter("id", id)
-  //         .executeAndFetch();
-  //   }
-  // }
+  public List<Integer> findGameId(int id) {
+    try(Connection con = DB.sql2o.open()) {
+      String sql = "SELECT game_id FROM system_game_link where system_id=:id";
+      return con.createQuery(sql)
+          .addParameter("id", id)
+          .executeAndFetch(Integer.class);
+    }
+  }
+
+  public Integer findSystemGivenName() {
+    try(Connection con = DB.sql2o.open()) {
+      String sql = "SELECT id FROM system_table where name=:name";
+      return con.createQuery(sql)
+          .addParameter("name", this.name)
+          .executeAndFetchFirst(Integer.class);
+  }
+  }
+
+  public String getName(){
+    try(Connection con = DB.sql2o.open()){
+      String sql = "SELECT name FROM system_table WHERE id=:id";
+      return con.createQuery(sql)
+        .addParameter("id", this.id)
+        .executeAndFetchFirst(String.class);
+    }
+  }
 }
